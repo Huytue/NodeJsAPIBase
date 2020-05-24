@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const express  = require('express');
+const secureApp =require('helmet');
 const logger = require('morgan'); // Tạo logger để kiểm tra yêu cầu
 const mongoClient = require('mongoose');
 
@@ -12,6 +13,7 @@ mongoClient.connect('mongodb://localhost/nodejsapistarter', {
 .catch(()=> console.error(`Connect database is failed with error which is ${error}`))
 
 const app = express();
+app.use(secureApp())
 
 
 const userRoute = require('./routes/user');
